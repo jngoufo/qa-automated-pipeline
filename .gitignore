@@ -1,0 +1,23 @@
+# Fichier: .gitignore
+
+# Environnement Virtuel
+venv/
+.venv/
+
+# Fichiers de cache Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Fichiers de configuration d'éditeurs
+.vscode/
+.idea/
+
+# Fichiers de build
+build/
+dist/
+*.egg-info/
+
+# Fichiers de secrets et d'environnement
+.env

@@ -1,0 +1,7 @@
+pytest
+pytest-mock
+pandas
+SQLAlchemy
+PyMySQL
+python-dotenv
+pytest-dotenv

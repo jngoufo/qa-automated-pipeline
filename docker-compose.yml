@@ -1,0 +1,14 @@
+# Fichier: docker-compose.yml
+
+version: '3.8'
+
+services:
+  db_test:
+    image: mysql:8.0
+    container_name: mysql_db_test
+    environment:
+      MYSQL_ROOT_PASSWORD: supersecretpassword
+      MYSQL_DATABASE: analyste_augmente_test
+    ports:
+      - "3307:3306"
+    command: --default-authentication-plugin=mysql_native_password
