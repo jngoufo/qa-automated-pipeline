@@ -39,7 +39,8 @@ jobs:
       - name: Wait for MariaDB to be ready
         run: |
           echo "Waiting for MariaDB..."
-          until nc -z -w10 mariadb 3306; do
+          # On utilise l'IP directe au lieu du nom DNS
+          until nc -z -w10 127.0.0.1 3306; do
             echo "MariaDB is unavailable - sleeping"
             sleep 1
           done
@@ -47,9 +48,8 @@ jobs:
 
       - name: Run Pytest and generate report
         env:
-          # On ajoute la variable d'environnement pour le mot de passe, utilisée par l'étape précédente
-          MARIADB_ROOT_PASSWORD: supersecretpassword
-          DB_TEST_URL: mysql+pymysql://root:supersecretpassword@mariadb:3306/analyste_augmente_test
+          # On garde '127.0.0.1' ici aussi pour la cohérence
+          DB_TEST_URL: mysql+pymysql://root:supersecretpassword@127.0.0.1:3306/analyste_augmente_test
         run: pytest -v --junitxml="report.xml"
 
       - name: Publish results to Xray
