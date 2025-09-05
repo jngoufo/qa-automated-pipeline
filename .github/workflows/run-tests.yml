@@ -36,19 +36,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Wait for MariaDB to be ready
-        run: |
-          sudo apt-get install -y mariadb-client
-          for i in {1..10}; do
-            if mysqladmin ping -h mariadb -u root -p${{ env.MARIADB_ROOT_PASSWORD }}; then
-              echo "MariaDB is up and running!"
-              exit 0
-            fi
-            echo "Waiting for MariaDB... ($i/10)"
-            sleep 3
-          done
-          echo "MariaDB did not start in time."
-          exit 1
+      - name: Wait for MariaDB Port
+        uses: ahmadnassri/action-wait-for-port@v1
+        with:
+          port: 3306
+          host: mariadb
+          timeout: 60 # Attend au maximum 60 secondes
 
       - name: Run Pytest and generate report
         env:
