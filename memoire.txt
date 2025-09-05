@@ -1,0 +1,14 @@
+pip install -r requirements.txt
+Lance les test avec pytest -v 
+
+Ouvre le terminal 1
+Lance docker-compose up
+Ouvrir un DEUXIÈME terminal. C'est dans ce nouveau terminal que tu vas pouvoir taper des commandes.
+Dans ce deuxième terminal, tu vas :
+Naviguer jusqu'au dossier de ton projet.
+Activer ton environnement virtuel (.\venv\Scripts\activate).
+Lancer les tests (pytest).
+
+
+Ctrl + C quand tu auras fini tes tests pour tout arrêter
+docker-compose down

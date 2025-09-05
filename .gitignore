@@ -21,3 +21,6 @@ dist/
 
 # Fichiers de secrets et d'environnement
 .env
+
+# Fichier perso
+memoire

@@ -1,7 +1,23 @@
-pytest
-pytest-mock
-pandas
-SQLAlchemy
-PyMySQL
-python-dotenv
-pytest-dotenv
+# Fichier: requirements.txt (Version Finale Garantie Stable)
+
+# --- Moteur de Test ---
+pytest==7.4.0
+pytest-mock==3.11.1
+pytest-json-report==1.5.0
+
+# --- Outil pour les appels API ---
+requests==2.31.0
+
+# --- Base de Données ---
+SQLAlchemy==2.0.20
+PyMySQL==1.1.0
+
+# --- Outils de Pipeline (versions modernes qui ont des wheels) ---
+pandas==2.2.0
+numpy==1.26.4
+yfinance==0.2.37
+
+# --- Outils de Date et Secrets ---
+freezegun==1.2.2
+pytz==2023.3
+python-dotenv==1.0.0
