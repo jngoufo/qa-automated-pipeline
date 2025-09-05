@@ -36,12 +36,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Wait for MariaDB Port
-        uses: ahmadnassri/action-wait-for-port@v1
-        with:
-          port: 3306
-          host: mariadb
-          timeout: 60 # Attend au maximum 60 secondes
+      - name: Wait for MariaDB to be ready
+        run: |
+          echo "Waiting for MariaDB..."
+          until nc -z -w10 mariadb 3306; do
+            echo "MariaDB is unavailable - sleeping"
+            sleep 1
+          done
+          echo "MariaDB is up and running!"
 
       - name: Run Pytest and generate report
         env:
