@@ -1,4 +1,4 @@
-# Fichier: .github/workflows/run-tests.yml (Version finale simplifiée)
+# Fichier: .github/workflows/run-tests.yml (Version Finale Corrigée)
 
 name: Python CI - Run Tests and Publish Results
 
@@ -36,14 +36,18 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      # ÉTAPE CORRIGÉE N°1
       - name: Run Pytest and generate report
         env:
-          DB_TEST_URL: mysql+pymysql://root:supersecretpassword@127.0.0.1:3306/analyste_augmente_test
+          # On utilise le nom du service 'mariadb' comme hôte
+          DB_TEST_URL: mysql+pymysql://root:supersecretpassword@mariadb:3306/analyste_augmente_test
         run: pytest -v --junitxml="report.xml"
 
+      # ÉTAPE CORRIGÉE N°2
       - name: Publish results to Xray
         if: success()
-        run: python publish_xray_results.py
+        # On passe les secrets comme variables d'environnement au script
         env:
           XRAY_CLIENT_ID: ${{ secrets.XRAY_CLIENT_ID }}
           XRAY_CLIENT_SECRET: ${{ secrets.XRAY_CLIENT_SECRET }}
+        run: python publish_xray_results.py
